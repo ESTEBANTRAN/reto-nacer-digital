@@ -1,0 +1,53 @@
+===================================================================
+CONFIGURACIÓN DE DESPLIEGUE EN RENDER (BACKEND NESTJS)
+===================================================================
+
+Repositorio: https://github.com/ESTEBANTRAN/reto-nacer-digital
+Backend URL: https://reto-nacer-digital.onrender.com
+Frontend URL: https://reto-nacer-digital.vercel.app
+
+-------------------------------------------------------------------
+PASO 1: SELECCIONAR TIPO DE SERVICIO
+-------------------------------------------------------------------
+1. En la pantalla de "Create a new Service":
+   - Haz clic en la opción "Web Services" (New Web Service ->).
+
+-------------------------------------------------------------------
+PASO 2: CONECTAR EL REPOSITORIO GITHUB
+-------------------------------------------------------------------
+1. Conecta tu cuenta de GitHub si aún no está vinculada.
+2. Busca y selecciona tu repositorio: ESTEBANTRAN/reto-nacer-digital.
+
+-------------------------------------------------------------------
+PASO 3: CONFIGURAR EL WEB SERVICE
+-------------------------------------------------------------------
+Valores exactos:
+
+- Name: reto-nacer-digital
+- Language: Node
+- Branch: master
+- Root Directory: backend   <-- ¡CRÍTICO! Debe ser la subcarpeta backend
+
+- Build Command: npm install && npm run build
+- Start Command: npm run start:prod
+- Instance Type: Free
+
+-------------------------------------------------------------------
+PASO 4: VARIABLES DE ENTORNO EN RENDER
+-------------------------------------------------------------------
+En el dashboard de Render -> Service -> Environment:
+
+   Key: ALLOWED_ORIGINS
+   Value: https://reto-nacer-digital.vercel.app
+
+   Key: GITHUB_TOKEN
+   Value: (tu GitHub Personal Access Token — pégalo directamente en Render, NUNCA en el código)
+
+NOTA: Render asigna PORT automáticamente. No necesitas definirlo.
+
+-------------------------------------------------------------------
+ESTADO ACTUAL: ✅ DESPLEGADO Y FUNCIONANDO
+-------------------------------------------------------------------
+Service ID: srv-d9hqhenpbkes7390af6g
+URL: https://reto-nacer-digital.onrender.com
+Endpoint de prueba: https://reto-nacer-digital.onrender.com/user/ESTEBANTRAN

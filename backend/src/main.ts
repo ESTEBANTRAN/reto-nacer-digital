@@ -25,7 +25,7 @@ async function bootstrap(): Promise<void> {
   const allowedOrigins = configService
     .get<string>('ALLOWED_ORIGINS', 'http://localhost:3000')
     .split(',')
-    .map((origin) => origin.trim());
+    .map((origin) => origin.trim().replace(/\/+$/, ''));
 
   app.enableCors({
     origin: allowedOrigins,

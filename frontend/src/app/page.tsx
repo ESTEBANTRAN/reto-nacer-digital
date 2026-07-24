@@ -8,7 +8,7 @@ import { ProfileSkeleton } from '@/components/Skeleton';
 import { ErrorMessage } from '@/components/ErrorMessage';
 
 /** Default GitHub username to display */
-const DEFAULT_USERNAME = 'esteban-aulestia';
+const DEFAULT_USERNAME = 'ESTEBANTRAN';
 
 export default function HomePage(): React.ReactElement {
   const [user, setUser] = useState<GithubUser | null>(null);
