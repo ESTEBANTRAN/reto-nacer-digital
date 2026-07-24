@@ -70,7 +70,7 @@ export default function HomePage(): React.ReactElement {
         <p>
           Desarrollado por{' '}
           <span className="text-gray-400 font-medium">Esteban Aulestia</span>
-          {' '}· 2025
+          {' '}· 2026
         </p>
       </footer>
     </main>
