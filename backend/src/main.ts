@@ -28,7 +28,18 @@ async function bootstrap(): Promise<void> {
     .map((origin) => origin.trim().replace(/\/+$/, ''));
 
   app.enableCors({
-    origin: allowedOrigins,
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+      // Allow requests with no origin (server-to-server, curl, health checks)
+      if (!origin) return callback(null, true);
+
+      // Allow exact matches from ALLOWED_ORIGINS
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+
+      // Allow Vercel preview deployment URLs (*.vercel.app)
+      if (origin.endsWith('.vercel.app')) return callback(null, true);
+
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     methods: ['GET'],
     credentials: false,
   });
