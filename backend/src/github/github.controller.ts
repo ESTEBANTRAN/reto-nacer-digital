@@ -1,7 +1,7 @@
-// backend/src/github/github.controller.ts
 import { Controller, Get, Param } from '@nestjs/common';
 import { GithubService } from './github.service';
 import { GithubUserDto } from './dto/github-user.dto';
+import { ParseUsernamePipe } from '../common/pipes/parse-username.pipe';
 
 @Controller('user')
 export class GithubController {
@@ -12,11 +12,13 @@ export class GithubController {
    *
    * Fetches and returns a GitHub user's public profile.
    *
-   * @param username - GitHub username
+   * @param username - Validated GitHub username
    * @returns GithubUserDto with the user's public information
    */
   @Get(':username')
-  async getUser(@Param('username') username: string): Promise<GithubUserDto> {
+  async getUser(
+    @Param('username', ParseUsernamePipe) username: string,
+  ): Promise<GithubUserDto> {
     return this.githubService.getUserProfile(username);
   }
 }
